@@ -1,3 +1,4 @@
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 
 import java.sql.SQLOutput;
@@ -11,7 +12,9 @@ public class MediaNotasTest {
     @Test
     public void testCalcularMedia() {
         // Cria um array com três notas.
-        double[] notas = {5.0, 6.0, 7.0};
+        double[] notas = {-1, 6.0, 7.0};
+        // any value cannot be negative
+        
 
         // Usa a classe MediaNotas para calcular a média das notas.
         double media = mediaNotas.calcularMedia(notas);
@@ -60,14 +63,25 @@ public class MediaNotasTest {
     // teste para verificar número de discentes
     @Test
     public void testQuantidadeDiscentes() {
-        // Define uma quantidade inválida de discentes.
+        // Define uma quantidade válida de discentes.
         int quantidadeDiscentes = 0;
 
-        // Usa a classe MediaNotas para tentar definir a quantidade de discentes.
-        boolean sucesso = mediaNotas.definirQuantidadeDiscentes(quantidadeDiscentes);
+        try {
+            // Usa a classe MediaNotas para definir a quantidade de discentes.
+            boolean sucesso = mediaNotas.definirQuantidadeDiscentes(quantidadeDiscentes);
 
-        // Verifica se a tentativa foi bem-sucedida. Como estamos tentando definir uma quantidade inválida de discentes, esperamos que a tentativa não tenha sido bem-sucedida.
-        
+            // Verifica se a tentativa foi bem-sucedida.
+            // Como estamos definindo uma quantidade válida de discentes, esperamos que a tentativa seja bem-sucedida.
+            boolean response = quantidadeDiscentes > 0 ? true : false;
+            // expect a value more than 0
+            assertEquals(true, response);
+
+            // Se chegarmos aqui, o teste passou.
+            System.out.println("Teste de definição de quantidade de discentes passou com sucesso.");
+        } catch (Exception e) {
+            // Se chegarmos aqui, houve um erro na execução do teste.
+            Assert.fail("O teste de definição de quantidade de discentes falhou: " + e.getMessage());
+        }
     }
 
 }
