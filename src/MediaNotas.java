@@ -2,6 +2,8 @@ import java.util.Arrays;
 import java.util.Scanner;
 
 public class MediaNotas {
+    private static int quantidadeDiscentes;
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Digite o número de discentes: ");
@@ -42,4 +44,16 @@ public class MediaNotas {
         }
         return calcularMedia(notas);
     }
+
+
+    public static boolean definirQuantidadeDiscentes(int quantidade) {
+        // A quantidade de discentes deve ser maior que 0 e menor ou igual a 10.
+        if (quantidade > 0 && quantidade <= 10) {
+            this.quantidadeDiscentes = quantidade;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
